@@ -9,11 +9,11 @@ package org.lhyf.config.client.constant;
 public interface ClientConstant {
     String DEFAULT_PROPERTY_SOURCES = "defaultpropertysources";
 
-    String APP_ID = "cainiaolc.config.appid";
-    String ENVIRONMENT = "cainiaolc.config.environment";
+    String APP_ID = "lhyf.config.appid";
+    String ENVIRONMENT = "lhyf.config.environment";
 
     /**配置平台请求接口地址*/
-    String URL = "cainiaolc.config.request.prefix";
-    String NAMESPACE = "cainiaolc.config.namespace";
+    String URL = "lhyf.config.request.prefix";
+    String NAMESPACE = "lhyf.config.namespace";
 }
 
