@@ -45,6 +45,7 @@ public class CustomApplicationContextInitializer implements ApplicationContextIn
             if (StringUtils.hasText(namespaces)) {
                 namespaceList = NAMESPACE_SPLITTER.splitToList(namespaces);
                 for (String namespace : namespaceList) {
+                    // composite 使用 LinkedHashSet存储 PropertySource,且其 hash 值使用的是 PropertySource 的 name
                     PropertySource config = ConfigManager.getConfig(urlPrefix, appId, env, namespace);
                     composite.addPropertySource(config);
                 }
@@ -53,7 +54,10 @@ public class CustomApplicationContextInitializer implements ApplicationContextIn
                 composite.addPropertySource(config);
             }
         }
-        environment.getPropertySources().addFirst(composite);
+        // 将远程拉去的配置设置在启动参数后面
+        environment.getPropertySources().addAfter("systemProperties",composite);
+        // 使用远程配置设置到最前面
+//        environment.getPropertySources().addFirst(composite);
     }
 
     @Override
